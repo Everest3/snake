@@ -1,23 +1,38 @@
 var pozx=0,pozy=500,height=500,width=500;
 var snake,canvas,text;
-var leftRandomPoz=0,bottomRandomPoz=500;
+var leftRandomPoz=0,bottomRandomPoz=500,val,previousKey=0;
 
 function myFunction(){
     random();
-    var val;
     var ev=document.addEventListener('keydown', function(event) {
-        var temp=event.keyCode;
-            switch(event.keyCode){
-                case 37:  clearInterval(val);val=setInterval(function(){pozx-=10;move();checkRand();},1000/20);break;//left arrow 
-                case 38:  clearInterval(val);val=setInterval(function(){pozy+=10;move();checkRand()},1000/20);break;//Up arrow
-                case 39:  clearInterval(val);val=setInterval(function(){pozx+=10;move();checkRand()},1000/20);break//right arrow ;
-                case 40:  clearInterval(val);val=setInterval(function(){pozy-=10;move();checkRand()},1000/20);break;	//down arrow
-            }
-                
+        var btn=event.keyCode;
+        if(btn==37 && btn!=previousKey-2){
+            clearInterval(val);val=setInterval(function(){pozx-=10;move();checkRand();},45);previousKey=btn;//left arrow 
+        }
+        else if(btn==38 && btn!=previousKey-2){
+            clearInterval(val);val=setInterval(function(){pozy+=10;move();checkRand()},45);previousKey=btn;//Up arrow
+        }
+        else if(btn==39 && btn!=previousKey+2){
+            clearInterval(val);val=setInterval(function(){pozx+=10;move();checkRand()},45);previousKey=btn;//right arrow
+        }
+        else if(btn==40 && btn!=previousKey+2){
+            clearInterval(val);val=setInterval(function(){pozy-=10;move();checkRand()},45);previousKey=btn;//down arrow
+        }           
     } )
-
 function move(){
-    if(pozx<0 || pozy<10 || pozy>500|| pozx>490 ||checkCrash()){
+    if(pozx<0){
+       pozx+=(width+10);
+    }
+    else if(pozy<10){
+        pozy+=(height+10);
+    }
+    else if(pozx>490){
+        pozx=-10;
+    }
+    else if(pozy>500){
+        pozy=0;
+    }
+    else if(checkCrash()){
         text=document.getElementById("demo"); 
         text.innerHTML="Game Over";
     }
@@ -25,6 +40,7 @@ function move(){
         position(newblock());
     }
 }
+
 
 function position(block){
     block.style.left=pozx+"px";
