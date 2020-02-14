@@ -1,0 +1,32 @@
+#canvas{
+    position: relative;
+    background-color: black;
+    margin:auto;
+    width:500px;
+    height:500px;
+
+}
+
+#snake{
+    box-sizing: border-box;
+    position: absolute; 
+    background-color: red;
+    width:10px;
+    height:10px;
+    border:1px solid black;
+}
+#fruit{
+    box-sizing: border-box;
+    position: absolute;
+    background-color: red;
+    border:1px solid black;
+    width:10px;
+    height:10px;
+    
+}
+h1{
+    margin:20px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    letter-spacing: 0.3em;       
+}
