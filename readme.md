@@ -1,2 +1,2 @@
 #SnakeGame
-Simple snake game using DOM-manipulation with JavaScript
+Simple snake game using only DOM-manipulation and css
